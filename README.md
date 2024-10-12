@@ -24,9 +24,10 @@ On the Apps Script dashboard settings, in the section "Script Properties", enter
 
 Update `.clasp.json` according to your Apps Script ID(in the settings page), Spreadsheet ID and GCP Project Id.
 
-Run the command to install dependencies and push the local code to remote 
+Run the command to install dependencies, log in with your Google account and push the local code to remote 
 ```
 npm i
+npm run login
 npm run push
 ```
 

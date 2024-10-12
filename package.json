@@ -11,6 +11,7 @@
     "@google/clasp": "^2.4.2"
   },
   "scripts": {
-    "push": "clasp push"
+    "push": "clasp push",
+    "login": "clasp login"
   }
 }
