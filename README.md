@@ -1,7 +1,7 @@
 # Swedish Vocabulary Helper
 A simple Google Apps Script by which you can easily look up and add Swedish words to your Google Sheets. 
 
-![screenshot](/images/main.png)
+![demo](/images/demo.gif)
 
 ## Install
 ### Algolia
