@@ -107,10 +107,46 @@ function addWordById(id: string) {
 }
 
 function mapQueryResult(result: object): object {
+    let word_class = result["class"]
+
+    switch (word_class) {
+        case "nn":
+            word_class = "substantiv";
+            break;
+        case "jj":
+            word_class = "adjektiv";
+            break;
+        case "vb":
+            word_class = "verb";
+            break;
+        case "ab":
+            word_class = "adverb"
+            break;
+        case "pp":
+            word_class = "preposition"
+            break;
+        case "kn":
+            word_class = "konjunktion"
+            break;
+        case "in":
+            word_class = "interjektion"
+            break;
+        case "pn":
+            word_class = "pronomen"
+            break;
+        case "prefix":
+            word_class = "prefix"
+            break;
+        case "abbrev":
+            word_class = "förkortning";
+            break;
+        default:
+            word_class = "övrigt"
+    }
     return {
         id: result["objectID"],
         word: result["word"],
-        class: result["class"] || "övrig",
+        class: word_class,
         translations: (result["translations"] || []).join(", "),
         inflections: (result["inflections"] || []).join(", "),
         examples: (result["examples"] || []).join(", ")
