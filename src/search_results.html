@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <base target="_top">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined" rel="stylesheet">
+    <script type="importmap">
+    {
+      "imports": {
+        "@material/web/": "https://esm.run/@material/web/"
+      }
+    }
+    </script>
+    <style>
+        :root {
+            --md-list-container-color: #f4fbfa;
+            --md-list-item-label-text-color: #161d1d;
+            --md-list-item-supporting-text-color: #3f4948;
+            --md-list-item-trailing-supporting-text-color: #3f4948;
+            --md-list-item-label-text-font: system-ui;
+            --md-list-item-supporting-text-font: system-ui;
+            --md-list-item-trailing-supporting-text-font: system-ui;
+        }
+
+        .result-container {
+            border: 1px solid;
+            border-radius: 20px;
+        }
+
+        .result-list {
+            border-radius: 20px;
+        }
+    </style>
+    <script type="module">
+        import '@material/web/all.js';
+        import { styles as typescaleStyles } from '@material/web/typography/md-typescale-styles.js';
+        document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
+    </script>
+    <script>
+        function onSuccess(id) {
+            if (id) {
+                const button = document.querySelector("#word-" + id + "-btn");
+                if (button) {
+                    button.innerHTML = "<md-icon>done</md-icon>";
+                }
+            }
+        }
+
+        function onFailure(id, err) {
+            console.error("Failed to add word", err)
+            if (id) {
+                const button = document.querySelector("#word-" + id + "-btn");
+                if (button) {
+                    button.innerHTML = "<md-icon>error</md-icon>";
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <section class="result-container">
+        <md-list class="result-list">
+            <? for (let i = 0; i < searchResults.length; i++) { ?>
+            <? let result = searchResults[i]; ?>
+            <? let id = result["id"]; ?>
+            <md-list-item id="word-<?!= id ?>">
+                <div slot="headline">
+                    <b>
+                        <?= result["word"] ?>
+                    </b>
+                    <small>
+                        <i>
+                            <?= result["class"] ?>
+                        </i>
+                    </small>
+                </div>
+                <div slot="supporting-text">
+                    <?= result["inflections"] ?>
+                </div>
+                <div slot="supporting-text">
+                    <?= result["translations"] ?>
+                </div>
+                <md-icon-button
+                    onclick="google.script.run.withSuccessHandler(() => onSuccess('<?!= id ?>')).withFailureHandler(err => onFailure('<?!= id ?>', err)).addWordById('<?!= id ?>')"
+                    slot="end" id="word-<?!= id ?>-btn">
+                    <md-icon>add</md-icon>
+                </md-icon-button>
+            </md-list-item>
+            <md-divider></md-divider>
+            <? } ?>
+        </md-list>
+    </section>
+</body>
+
+</html>

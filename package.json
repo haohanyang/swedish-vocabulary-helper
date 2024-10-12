@@ -1,0 +1,16 @@
+{
+  "name": "swedish-vocabulary-helper",
+  "version": "1.0.0",
+  "author": "Haohan Yang",
+  "license": "CC-BY-SA-4.0",
+  "description": "Look up and add Swedish words on Google Sheets",
+  "dependencies": {
+    "@types/google-apps-script": "^1.0.83"
+  },
+  "devDependencies": {
+    "@google/clasp": "^2.4.2"
+  },
+  "scripts": {
+    "push": "clasp push"
+  }
+}

@@ -1,0 +1,7 @@
+node_modules/
+package.json
+package-lock.json
+tsconfig.json
+dictionary.json
+download.py
+folkets_sv_en_public.xml

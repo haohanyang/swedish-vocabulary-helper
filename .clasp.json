@@ -1,0 +1,8 @@
+{
+    "scriptId": "<your-script-id>",
+    "rootDir": "src",
+    "parentId": [
+        "<google-sheet-id>"
+    ],
+    "projectId": "<google-cloud-project-id>"
+}
